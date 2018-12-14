@@ -30,7 +30,7 @@ namespace WebMvc
             .ConfigureAppConfiguration((hostContext, config) =>
             {
                 config.AddInMemoryCollection(arrayDict);
-               // config.AddJsonFile("json_array.json", optional: false, reloadOnChange: false);
+                config.AddJsonFile("json_array.json", optional: false, reloadOnChange: false);
                 //config.AddJsonFile("starship.json", optional: false, reloadOnChange: false);
                 //config.AddXmlFile("tvshow.xml", optional: false, reloadOnChange: false);
                 //config.AddEFConfiguration(options => options.UseInMemoryDatabase("InMemoryDb"));

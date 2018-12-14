@@ -16,6 +16,28 @@ namespace WebMvc.Controllers
         {
             public string[] Entries { get; set; }
         }
+
+        public class JsonArrayExample
+        {
+            public string Key { get; set; }
+            public string[] Subsection { get; set; }
+        }
+
+
+        public class JsonTest
+        {
+            public string key { get; set; }
+            public string[] subsection { get; set; }
+        }
+
+        public class Starship
+        {
+            public string Name { get; set; }
+            public string Registry { get; set; }
+            public string Class { get; set; }
+            public decimal Length { get; set; }
+            public bool Commissioned { get; set; }
+        }
         private IConfiguration _config;
 
         public HomeController(IConfiguration config)
@@ -32,6 +54,11 @@ namespace WebMvc.Controllers
             ArrayExample ArrayExample = _config.GetSection("array").Get<ArrayExample>();
             var entries = _config.GetValue<Array>("entries");
 
+
+            var configSection = _config.GetSection("section1");
+
+
+            var jsonTest = _config.GetSection("json_array").Get<JsonTest>();
 
 
             return View();
