@@ -7,11 +7,15 @@ using Microsoft.AspNetCore.Mvc;
 using WebMvc.Models;
 using Microsoft.Extensions.Configuration;
 
+using WebMvc.Data;
+using WebMvc.Models.BusinessModel;
 
 namespace WebMvc.Controllers
 {
     public class HomeController : Controller
     {
+
+        #region Test Code
         public class ArrayExample
         {
             public string[] Entries { get; set; }
@@ -39,14 +43,18 @@ namespace WebMvc.Controllers
             public bool Commissioned { get; set; }
         }
         private IConfiguration _config;
+        #endregion
 
-        public HomeController(IConfiguration config)
+
+        ApplicationBusinessContext _context;
+        public HomeController(IConfiguration config, ApplicationBusinessContext context)
         {
             _config = config;
+            _context = context;
         }
 
 
-        public IActionResult Index()
+        public async   Task<IActionResult> Index()
         {
             var arrayExample = new ArrayExample();
             _config.GetSection("array").Bind(arrayExample);
@@ -59,6 +67,19 @@ namespace WebMvc.Controllers
 
 
             var jsonTest = _config.GetSection("json_array").Get<JsonTest>();
+
+
+
+
+
+
+            WebMvc.Models.BusinessModel.Task model = new Models.BusinessModel.Task();
+            model.Subject = "abcke";
+            model.Description = "第一个ovrn";
+
+            _context.tasks.Add(model);
+
+            await _context.SaveChangesAsync();
 
 
             return View();

@@ -29,6 +29,10 @@ namespace WebMvc
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySQL(Configuration.GetConnectionString("MysqlConnection")));
 
+            services.AddDbContext<ApplicationBusinessContext>(options =>
+                options.UseMySQL(Configuration.GetConnectionString("MysqlConnection")));
+
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
